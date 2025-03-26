@@ -20,8 +20,14 @@ void pass(int32_t *a, int32_t *r, int n)
   int i;
 
   int32_t t1,t2;
+
+  t1 = add_mod( a[0], a[n]) ;
+  t2 = sub_mod( a[0], a[n]);
   
-  for (i=0; i<n; i++) 
+  a[0] = t1;
+  a[n] = t2;
+  
+  for (i=1; i<n; i++) 
     {
       t1 = add_mod( a[i], a[i+n]) ;
       t2 = sub_mod( a[i], a[i+n]);
