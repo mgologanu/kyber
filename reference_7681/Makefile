@@ -4,7 +4,7 @@ CC = gcc
 
 LIB =
 
-LIB_SOURCES = pass.c 
+LIB_SOURCES = pass.c  modular_operations.c roots.c
 
 LIB_OBJECTS =  $(LIB_SOURCES:.c=.o)
 
@@ -15,14 +15,14 @@ UNITTESTS= $(UNITTESTS_LIST:.c=.test)
 
 .PHONY: all check clean
 
-all: libzen3b.a
+all: libntt_7681.a
 
 
-libzen3b.a: $(LIB_OBJECTS) 
+libntt_7681.a: $(LIB_OBJECTS) 
 	$(AR) rc $@ $^
 	ranlib $@
 
-check: libzen3b.a $(UNITTESTS) 
+check: libntt_7681.a $(UNITTESTS) 
 	$(info $(UNITTESTS))
 	for t in $(UNITTESTS); do ./$$t ; done 
 
@@ -35,4 +35,4 @@ clean:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .c.test: $< 
-	$(CC) $(CFLAGS) -g -o $@ $< -I. -L. -lzen3b $(LIB) -lm
+	$(CC) $(CFLAGS) -g -o $@ $< -I. -L. -lntt_7681 $(LIB) -lm

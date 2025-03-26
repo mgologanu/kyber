@@ -153,9 +153,9 @@ static void (*minunit_teardown)(void) = NULL;
 		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s failed:\n\t%s:%d: %s", __func__, __FILE__, __LINE__, message);\
 		minunit_status = 1;\
 		return;\
-	} else {\
-		printf(".");\
-	}\
+	} else {				\
+	  	\
+	}					\
 )
 
 #define mu_assert_int_eq(expected, result) MU__SAFE_BLOCK(\
