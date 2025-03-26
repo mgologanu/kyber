@@ -36,3 +36,41 @@ int32_t mul_mod( int32_t a, int32_t b)
 
   return res;  
 }
+
+int32_t add_mod( int32_t a, int32_t b)
+{
+  const int32_t p = 7681;
+  int32_t res;
+  
+  res = a+b;
+
+  if(res>=p)
+    {
+      res = res-p;
+    }
+  else if(res < 0)
+    {
+      res = res + p;
+    }
+
+  return res;  
+}
+
+int32_t sub_mod( int32_t a, int32_t b)
+{
+  const int32_t p = 7681;
+  int32_t res;
+  
+  res = a-b;
+
+  if(res>=p)
+    {
+      res = res-p;
+    }
+  else if(res<0)
+    {
+      res = res + p;
+    }
+
+  return res;  
+}
