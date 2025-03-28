@@ -2,6 +2,7 @@
 
 #include "ntt_7681.h"
 
+#define p 7681
 
 
 void ntt_256(int32_t * a)
@@ -39,6 +40,18 @@ void ntt_64(int32_t * a)
 {
   pass(a, r64, 32);
 
+  for (int i=0; i<64; i++)
+    {
+      while(a[i] > p)
+	{
+	  a[i] = a[i]-p;
+	}
+
+      while(a[i] < p)
+	{
+	  a[i] = a[i]+p;
+	}
+    }
   ntt_32(a);
   ntt_32(a+32);
 }
@@ -56,6 +69,18 @@ void ntt_32(int32_t * a)
 void ntt_16(int32_t * a)
 {
   pass(a, r16, 8);
+    for (int i=0; i<16; i++)
+    {
+      while(a[i] > p)
+	{
+	  a[i] = a[i]-p;
+	}
+
+      while(a[i] < p)
+	{
+	  a[i] = a[i]+p;
+	}
+    }
 
   ntt_8(a);
   ntt_8(a+8);
@@ -76,6 +101,18 @@ void ntt_4(int32_t * a)
 {
  
   pass(a, r4, 2);
+    for (int i=0; i<4; i++)
+    {
+      while(a[i] > p)
+	{
+	  a[i] = a[i]-p;
+	}
+
+      while(a[i] < p)
+	{
+	  a[i] = a[i]+p;
+	}
+    }
   ntt_2(a);
   ntt_2(a+2);
     
