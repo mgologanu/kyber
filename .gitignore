@@ -27,6 +27,6 @@ timing.h
 *.exe
 *.exe?
 
-
+*Zone.Identifier
 
 
