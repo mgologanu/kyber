@@ -4,7 +4,7 @@ CC = gcc
 
 LIB =
 
-LIB_SOURCES = pass_m.c  modular_operations_m.c roots_m.c ntt_recursive_m.c
+LIB_SOURCES = pass_m.c  modular_operations_m.c roots_m.c ntt_recursive_m.c pass_vectors.c ntt_vectors.c
 
 LIB_OBJECTS =  $(LIB_SOURCES:.c=.o)
 

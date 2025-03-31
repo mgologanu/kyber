@@ -9,6 +9,8 @@ int32_t red_finala(int32_t a);
 
 
 void pass(int32_t *a, int32_t *r, int n);
+void pass_vectors(int32_t *a, int32_t *r, int n);
+
 
 
 extern int32_t r512[];
@@ -27,6 +29,14 @@ void ntt_32(int32_t * a);
 void ntt_16(int32_t * a);
 void ntt_8(int32_t * a);
 void ntt_4(int32_t * a);
+
+void ntt_v_256(int32_t * a);
+void ntt_v_128(int32_t * a);
+void ntt_v_64(int32_t * a);
+void ntt_v_32(int32_t * a);
+void ntt_v_16(int32_t * a);
+void ntt_v_8(int32_t * a);
+void ntt_v_4(int32_t * a);
 
 
   
