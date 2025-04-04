@@ -48,6 +48,7 @@ inline int32_t mul_mod2( int32_t a, int32_t b)
 
 void pass_vectors(int32_t *a, int32_t *r, int n)
 {
+  const int32_t N = 256;
   int i;
 
   int32_t t1,t2,t3,t4;
@@ -78,6 +79,44 @@ void pass_vectors(int32_t *a, int32_t *r, int n)
       a[i+n+n] = t4;
       
     }
+    
+
+}
+
+
+void pass_vectors1(int32_t *a, int32_t *r, int n)
+{
+  const int32_t N = 256;
+  int i;
+  int k;
+
+  int32_t t1,t2,t3,t4;
+
+  //  t1 = add_mod( a[0], a[n]) ;
+  // t2 = sub_mod( a[0], a[n]);
+
+  int perechi = N/(2*n);
+  for(k =0; k< perechi; k++)
+  {
+    for (i=0; i<n; i++) 
+    {
+      //     t1 = add_mod( a[i], a[i+n]) ;
+      //     t2 = sub_mod( a[i], a[i+n]);
+      t1 =  a[i +k*n] + a[i+n + k*n] ;
+      t2 =  a[i+k*n] - a[i+n+k*n];
+      
+      t2 = mul_mod2(t2, r[i +k*n]);
+      
+      a[i +k*n] = t1;
+      a[i+n +k*n] = t2;
+
+  
+      
+    }
+
+  }
+  
+  
     
 
 }
