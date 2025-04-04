@@ -38,12 +38,7 @@ inline int32_t mul_mod2( int32_t a, int32_t b)
   t = T + (m*N);
   r1 = t>>16; // parte intreaga din t/R
  
-  //if(r1>=p)
-    //{
-      ///r1 = r1-p;
-    //}
-
-  return r1;  //nr sub forma Montgomery
+  return r1;  //nr sub forma Montgomery +-p
 }
 
 void pass(int32_t *a, int32_t *r, int n)
@@ -54,9 +49,12 @@ void pass(int32_t *a, int32_t *r, int n)
 
   //  t1 = add_mod( a[0], a[n]) ;
   // t2 = sub_mod( a[0], a[n]);
-
-  t1 =  a[0] + a[n] ;
+  
+   t1 =  a[0] + a[n];
+  // t1 = reduce_small(t1);
+  
   t2 =  a[0] - a[n];
+  //t1 = reduce_small(t1);
 
   
   a[0] = t1;
@@ -64,8 +62,8 @@ void pass(int32_t *a, int32_t *r, int n)
   
   for (i=1; i<n; i++) 
     {
-      //     t1 = add_mod( a[i], a[i+n]) ;
-      //     t2 = sub_mod( a[i], a[i+n]);
+      //t1 = add_mod( a[i], a[i+n]) ;
+      // t2 = sub_mod( a[i], a[i+n]);
       t1 =  a[i] + a[i+n] ;
       t2 =  a[i] - a[i+n];
       

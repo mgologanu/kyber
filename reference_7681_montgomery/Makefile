@@ -1,4 +1,5 @@
-CFLAGS +=  -O3 -Wall -mavx2 -mfma -march=native -fomit-frame-pointer
+#CFLAGS +=  -O3 -Wall -mavx2 -mfma -march=native -fomit-frame-pointer
+CFLAGS +=  -O3 -Wall -fomit-frame-pointer
 
 CC = gcc 
 

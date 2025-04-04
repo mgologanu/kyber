@@ -31,6 +31,11 @@ void ntt_128(int32_t * a)
 {
   pass(a, r128, 64);
 
+  for (int i=0; i<128; i++) 
+    {
+      a[i] = reduce_small(a[i]);
+    }
+
   ntt_64(a);
   ntt_64(a+64);
   
@@ -40,18 +45,7 @@ void ntt_64(int32_t * a)
 {
   pass(a, r64, 32);
 
-  for (int i=0; i<64; i++)
-    {
-      while(a[i] > p)
-	{
-	  a[i] = a[i]-p;
-	}
 
-      while(a[i] < p)
-	{
-	  a[i] = a[i]+p;
-	}
-    }
   ntt_32(a);
   ntt_32(a+32);
 }
@@ -61,6 +55,12 @@ void ntt_32(int32_t * a)
 {
   pass(a, r32, 16);
 
+  for (int i=0; i<32; i++) 
+    {
+      a[i] = reduce_small(a[i]);
+    }
+
+
   ntt_16(a);
   ntt_16(a+16);
 }
@@ -69,18 +69,6 @@ void ntt_32(int32_t * a)
 void ntt_16(int32_t * a)
 {
   pass(a, r16, 8);
-    for (int i=0; i<16; i++)
-    {
-      while(a[i] > p)
-	{
-	  a[i] = a[i]-p;
-	}
-
-      while(a[i] < p)
-	{
-	  a[i] = a[i]+p;
-	}
-    }
 
   ntt_8(a);
   ntt_8(a+8);
@@ -90,7 +78,11 @@ void ntt_16(int32_t * a)
 void ntt_8(int32_t * a)
 {
   pass(a, r8, 4);
-
+  for (int i=0; i<8; i++) 
+    {
+      a[i] = reduce_small(a[i]);
+    }
+  
   ntt_4(a);
   ntt_4(a+4);
   
@@ -101,18 +93,7 @@ void ntt_4(int32_t * a)
 {
  
   pass(a, r4, 2);
-    for (int i=0; i<4; i++)
-    {
-      while(a[i] > p)
-	{
-	  a[i] = a[i]-p;
-	}
 
-      while(a[i] < p)
-	{
-	  a[i] = a[i]+p;
-	}
-    }
   ntt_2(a);
   ntt_2(a+2);
     
@@ -121,10 +102,12 @@ void ntt_4(int32_t * a)
 void ntt_2(int32_t * a)
 {
   int32_t t0, t1;
-  t0 = add_mod(a[0],a[1]);
-  t1 = sub_mod(a[0],a[1]);
+  t0 = a[0] + a[1];
+  t1 = a[0] - a[1];
 
-  a[0] = red_finala(t0);
-  a[1] = red_finala(t1);
+  
+   
+  a[0] = reduce_small(t0);
+  a[1] = reduce_small(t1);
 
 }

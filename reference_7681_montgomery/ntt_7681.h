@@ -7,6 +7,8 @@ int32_t add_mod( int32_t a, int32_t b);
 int32_t sub_mod( int32_t a, int32_t b);
 int32_t red_finala(int32_t a);
 
+int32_t reduce_small(int32_t x);
+
 
 void pass(int32_t *a, int32_t *r, int n);
 
@@ -29,6 +31,5 @@ void ntt_8(int32_t * a);
 void ntt_4(int32_t * a);
 void ntt_2(int32_t * a);
 
-  
 
 #endif /* ntt_7681.h */

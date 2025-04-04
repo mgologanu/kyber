@@ -16,17 +16,13 @@ int32_t mul_mod( int32_t a, int32_t b)
   int32_t t;
   int32_t r1;
   int32_t T;
-  int32_t N;
-  N = p;
-
-  int32_t Np;
-  Np = p_prim;
+ 
 
   T = a*b;
   m = T & 0xFFFF; //reducere mod 2^16=R
-  m = m * Np;
+  m = m * p_prim;
   m = m & 0xFFFF;
-  t = T + (m*N);
+  t = T + (m*p);
   r1 = t>>16; // parte intreaga din t/R
  
   //if(r1>=p)
@@ -83,5 +79,30 @@ int32_t sub_mod( int32_t a, int32_t b)
       res = res + p;
     }
 
-  return res;  
+  return res;
 }
+
+
+
+int32_t reduce_small(int32_t x)
+{
+  const int32_t p = 7681;
+
+  const int32_t v_red =  17474;
+     
+  int32_t t1,t2,m,r1;
+
+  
+  t2 = (x*v_red) >> 27;					
+  m = t2 * p;						
+  t1 = x - m;						
+  t2 = t1-p;						
+  if (t2 == 0)					
+    r1 = t2;						
+  else						
+    r1 = t1;
+
+  return r1;
+ 
+}
+  
